@@ -1,0 +1,164 @@
+/* ===== Global Styles ===== */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: linear-gradient(to right, #e8f5e9, #f1f8e9);
+    color: #333;
+}
+
+/* ===== Header Section ===== */
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+/* ===== Navigation Bar ===== */
+nav {
+    background-color: #06750c;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover,
+nav a.active {
+    text-decoration: underline;
+
+}
+ul li a:hover{
+background-color:#185c98;
+}
+
+/* ===== Main Content ===== */
+main {
+    width: 80%;
+    max-width: 1000px;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* ===== Article Section ===== */
+article {
+    background-color: rgba(255, 255, 255, 0.95);
+    flex: 2;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    margin-right: 20px;
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #4CAF50;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+article h2 {
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.role {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+article h3 {
+    color: #4CAF50;
+    margin-top: 25px;
+}
+
+article p {
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+/* ===== Lists ===== */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* ===== Aside Section ===== */
+aside {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+aside h3 {
+    color: #4CAF50;
+    text-align: center;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 10px 0;
+    text-align: center;
+}
+
+aside a {
+    color: #2c289f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+aside a:hover {
+    text-decoration:underline;
+}
+
+/* ===== Footer Section ===== */
+footer {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 50px;
+    font-size: 14px;
+    border-top: 2px solid #388E3C;
+}
