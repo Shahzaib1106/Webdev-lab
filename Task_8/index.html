@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #fcfbf5;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .calculator {
+        background-color: #222;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0px 10px 30px rgba(0,0,0,0.2);
+        width: 280px;
+    }
+
+    .display {
+        background-color: #444;
+        color: white;
+        font-size: 1.5rem;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        overflow-x: auto;
+        min-height: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .input {
+        font-size: 1.2rem;
+        color: #ccc;
+        text-align: left;
+    }
+
+    .result {
+        font-size: 1.8rem;
+        color: #fff;
+        text-align: right;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    button {
+        padding: 20px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: #555;
+        color: white;
+        transition: background 0.2s;
+    }
+
+    button:hover {
+        background-color: #777;
+    }
+
+    button.operator {
+        background-color: #ff9500;
+        color: white;
+    }
+
+    button.operator:hover {
+        background-color: #ffa733;
+    }
+
+    button.equal {
+        background-color: #1e90ff;
+    }
+
+    button.equal:hover {
+        background-color: #3399ff;
+    }
+
+    button.clear {
+        background-color: #ff3b30;
+    }
+
+    button.clear:hover {
+        background-color: #ff5c4d;
+    }
+</style>
+</head>
+<body>
+<div class="calculator">
+    <div class="display" id="display">
+        <div class="input" id="input">0</div>
+        <div class="result" id="result">0</div>
+    </div>
+    <div class="buttons">
+        <!-- Top row -->
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button class="clear" onclick="clearDisplay()">C</button>
+
+        <!-- Second row -->
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('*')">x</button>
+
+        <!-- Third row -->
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+
+        <!-- Fourth row -->
+        <button class="equal" onclick="calculateResult()">=</button>
+        <button onclick="appendValue('0')">0</button>
+        <button class="operator" onclick="appendValue('-')">-</button>
+        <button class="operator" onclick="appendValue('/')">/</button>
+    </div>
+</div>
+
+<script>
+const inputDisplay = document.getElementById('input');
+const resultDisplay = document.getElementById('result');
+let currentInput = '';
+
+function appendValue(value) {
+    if(currentInput === '' && (value === '+' || value === '*' || value === '/')) return;
+    currentInput += value;
+    inputDisplay.textContent = currentInput;
+}
+
+function clearDisplay() {
+    currentInput = '';
+    inputDisplay.textContent = '0';
+    resultDisplay.textContent = '0';
+}
+
+function calculateResult() {
+    try {
+        const result = eval(currentInput);
+        resultDisplay.textContent = result;
+        // Do NOT overwrite currentInput, so input stays visible
+    } catch {
+        resultDisplay.textContent = 'Error';
+    }
+}
+</script>
+</body>
+</html>
