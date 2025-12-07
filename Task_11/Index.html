@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Canvas & SVG Lab — Drawing App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .tools {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 15px;
+    }
+
+    .tools input[type="color"],
+    .tools input[type="range"] {
+        cursor: pointer;
+    }
+
+    canvas {
+        display: block;
+        margin: auto;
+        border: 3px solid #111;
+        background: white;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        border-radius: 8px;
+    }
+
+    button {
+        padding: 10px 18px;
+        background: #111827;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 15px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #2563eb;
+    }
+
+    /* SVG box */
+    .svg-box {
+        margin-top: 40px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>🎨 Canvas Drawing App — Lab 11</h2>
+
+
+    <div class="tools">
+        <label>Color: <input type="color" id="colorPicker" value="#000000"></label>
+
+        <label>Brush Size: 
+            <input type="range" id="brushSize" min="2" max="50" value="5">
+        </label>
+
+        <button id="clearBtn">Clear</button>
+        <button id="saveBtn">Save Image</button>
+    </div>
+
+    <!-- Canvas -->
+    <canvas id="drawCanvas" width="800" height="500"></canvas>
+
+    <!-- SVG Animation -->
+    <div class="svg-box">
+        <h2>🚀 Sample SVG Animation</h2>
+
+        <svg width="800" height="120">
+            <circle cx="50" cy="60" r="25" fill="#2563eb">
+                <animate attributeName="cx"
+                         from="50" to="750"
+                         dur="4s"
+                         repeatCount="indefinite" />
+            </circle>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+    const canvas = document.getElementById("drawCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let drawing = false;
+
+    function startDraw(e) {
+        drawing = true;
+        draw(e);
+    }
+
+    function endDraw() {
+        drawing = false;
+        ctx.beginPath();
+    }
+
+    function draw(e) {
+        if (!drawing) return;
+
+        ctx.lineWidth = document.getElementById("brushSize").value;
+        ctx.strokeStyle = document.getElementById("colorPicker").value;
+        ctx.lineCap = "round";
+
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.offsetX, e.offsetY);
+    }
+
+    // Event Listeners
+    canvas.addEventListener("mousedown", startDraw);
+    canvas.addEventListener("mouseup", endDraw);
+    canvas.addEventListener("mousemove", draw);
+    canvas.addEventListener("mouseleave", endDraw);
+
+    // Clear button
+    document.getElementById("clearBtn").addEventListener("click", () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    // Save button
+    document.getElementById("saveBtn").addEventListener("click", () => {
+        const link = document.createElement('a');
+        link.download = "my_drawing.png";
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+</script>
+
+</body>
+</html>

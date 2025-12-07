@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List (Lab 10)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Product List (Lab 10)</h1>
+
+    
+    <div class="toggle-container">
+        <input type="checkbox" id="darkToggle">
+        <label for="darkToggle" class="toggle"></label>
+    </div>
+</div>
+
+<div class="filters">
+    <label>Category:
+        <select id="category"></select>
+    </label>
+
+    <label>Min Price:
+        <input type="number" id="minPrice" value="0">
+    </label>
+
+    <label>Max Price:
+        <input type="number" id="maxPrice" value="1000">
+    </label>
+
+    <label>Sort:
+        <select id="sort">
+            <option value="default">Default</option>
+            <option value="low-high">Price: Low → High</option>
+            <option value="high-low">Price: High → Low</option>
+        </select>
+    </label>
+
+    <button id="applyBtn">Apply</button>
+    <button id="resetBtn">Reset</button>
+</div>
+
+<div class="product-list" id="productList"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
