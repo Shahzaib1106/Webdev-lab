@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 12 - XSS & CSRF Demo</title>
+
+    <!-- DOMPurify Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        textarea, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+        }
+        .box {
+            background: #ffffff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 40px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Lab 12: Web Security Basics</h1>
+<p><strong>XSS Demonstration, Prevention & CSRF Token Mockup</strong></p>
+
+<!-- ================= INSECURE XSS DEMO ================= -->
+<div class="box">
+    <h2>1️⃣ Insecure XSS Example (Vulnerable)</h2>
+    <p>Try entering:</p>
+    <code>&lt;script&gt;alert('XSS Attack!')&lt;/script&gt;</code>
+
+    <form id="insecure-form">
+        <textarea id="insecure-input" placeholder="Enter comment"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="output" id="insecure-output"></div>
+</div>
+
+<!-- ================= SECURE XSS DEMO ================= -->
+<div class="box">
+    <h2>2️⃣ Secure XSS Prevention (DOMPurify)</h2>
+
+    <form id="secure-form">
+        <textarea id="secure-input" placeholder="Enter comment"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="output" id="secure-output"></div>
+</div>
+
+<!-- ================= CSRF TOKEN DEMO ================= -->
+<div class="box">
+    <h2>3️⃣ CSRF Token Mockup</h2>
+
+    <form id="csrf-form" method="POST">
+        <!-- Mock CSRF Token -->
+        <input type="hidden" name="csrf-token" id="csrf-token">
+        <input type="text" placeholder="Enter username">
+        <button type="submit">Submit</button>
+    </form>
+
+    <p><strong>Generated CSRF Token:</strong></p>
+    <div class="output" id="csrf-display"></div>
+</div>
+
+<script>
+/* ================= INSECURE XSS ================= */
+document.getElementById("insecure-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const input = document.getElementById("insecure-input").value;
+
+    // ❌ Vulnerable: executes scripts
+    document.getElementById("insecure-output").innerHTML = input;
+});
+
+/* ================= SECURE XSS ================= */
+document.getElementById("secure-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const input = document.getElementById("secure-input").value;
+
+    // ✅ Sanitize input
+    const clean = DOMPurify.sanitize(input);
+    document.getElementById("secure-output").innerHTML = clean;
+});
+
+/* ================= CSRF TOKEN MOCKUP ================= */
+function generateCSRFToken() {
+    return Math.random().toString(36).substring(2) + Date.now();
+}
+
+const csrfToken = generateCSRFToken();
+document.getElementById("csrf-token").value = csrfToken;
+document.getElementById("csrf-display").textContent = csrfToken;
+
+document.getElementById("csrf-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    alert("Form submitted with valid CSRF token!");
+});
+</script>
+
+</body>
+</html>

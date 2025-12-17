@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ================= BASIC SEO ================= -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>John Doe | Web Developer Portfolio</title>
+    <meta name="description" content="John Doe's web developer portfolio showcasing projects, skills, and contact information.">
+    <meta name="keywords" content="John Doe, web developer, portfolio, HTML, CSS, JavaScript">
+
+    <!-- ================= STRUCTURED DATA (SEO) ================= -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "John Doe",
+        "jobTitle": "Web Developer",
+        "url": "https://www.johndoeportfolio.com",
+        "sameAs": [
+            "https://github.com/johndoe",
+            "https://www.linkedin.com/in/johndoe"
+        ]
+    }
+    </script>
+
+    <!-- ================= BASIC STYLES ================= -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+        }
+        header, nav, main, section, footer {
+            padding: 20px;
+        }
+        nav {
+            background: #222;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-right: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        nav a:focus {
+            outline: 3px solid yellow;
+        }
+        img {
+            max-width: 200px;
+        }
+        footer {
+            background: #f2f2f2;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header role="banner">
+    <h1>John Doe</h1>
+    <p>Professional Web Developer</p>
+</header>
+
+<!-- ================= NAVIGATION ================= -->
+<nav aria-label="Main Navigation">
+    <ul>
+        <li><a href="#home" tabindex="1">Home</a></li>
+        <li><a href="#projects" tabindex="2">Projects</a></li>
+        <li><a href="#about" tabindex="3">About</a></li>
+        <li><a href="#contact" tabindex="4">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ================= MAIN CONTENT ================= -->
+<main id="home">
+
+    <!-- HOME SECTION -->
+    <section>
+        <h2>Welcome</h2>
+        <p>
+            Welcome to my portfolio. I am a web developer specializing in
+            accessible, SEO-friendly web applications.
+        </p>
+
+        <img src="profile.jpg" alt="Portrait of John Doe, Web Developer">
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <h2>Projects</h2>
+        <article>
+            <h3>Portfolio Website</h3>
+            <p>A responsive and accessible portfolio website built using HTML, CSS, and JavaScript.</p>
+        </article>
+        <article>
+            <h3>Secure Web App</h3>
+            <p>A security-focused web application implementing XSS and CSRF protection.</p>
+        </article>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            I focus on building fast, accessible, and SEO-optimized websites
+            following modern web standards.
+        </p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <form aria-label="Contact Form">
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" aria-required="true"><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message"></textarea><br><br>
+
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer role="contentinfo">
+    <p>&copy; 2025 John Doe. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
